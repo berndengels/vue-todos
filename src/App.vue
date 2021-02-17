@@ -1,8 +1,7 @@
 <template>
-    <div id="app">
+    <div id="app" class="container-fluid">
         <div id="nav">
-            <router-link to="/">Home</router-link>
-            |
+            <router-link class="page-item" to="/">Home</router-link>
         </div>
         <router-view/>
     </div>
@@ -28,5 +27,10 @@
 
 #nav a.router-link-exact-active {
     color: #42b983;
+}
+
+#nav .page-item::after {
+    content: " | ";
+    color: #2c3e50;
 }
 </style>
