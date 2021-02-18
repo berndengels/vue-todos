@@ -1,7 +1,7 @@
 <template>
     <div>
         <h3>Todos</h3>
-        <AddTodo />
+        <AddTodo :handleAdd="add"/>
         <hr/>
         <Todo :todos="todos" :handleRemove="remove" />
     </div>
@@ -36,14 +36,20 @@ export default {
             })
 */
         },
-/*
-        add(text) {
 
+        add(txt) {
+            var obj = {
+              id: 100,
+              done: false,
+              text: txt,
+            }
+            this.todos.push(obj)
         },
-        update(todo) {
+/*
+      update(todo) {
 
-        }
-*/
+             }
+     */
     }
 }
 </script>
