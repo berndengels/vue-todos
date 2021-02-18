@@ -3,7 +3,7 @@
         <h3>Todos</h3>
         <AddTodo />
         <hr/>
-        <Todo :todos="todos" :handleRemove="remove"/>
+        <Todo :todos="todos" :handleRemove="remove" />
     </div>
 </template>
 
@@ -22,22 +22,29 @@ export default {
             todos: data,
         }
     },
-  methods: {
-      remove(todo) {
-        // @todo axios api request
-        // ES6 Syntax
-        this.todos = this.todos.filter(item => item !== todo)
-      },
-    /*
-      add(text) {
+    methods: {
+        remove(todo) {
+            // @todo axios api request
+            // ES6 Syntax
+            this.todos = this.todos.filter(item => item !== todo)
+/*
+// klassische Syntax in JS
+            this.todos = this.todos.filter(function(item) {
+                if(item !== todo) {
+                    return item
+                }
+            })
+*/
+        },
+/*
+        add(text) {
 
-      },
-      update(todo) {
+        },
+        update(todo) {
 
-      }
-
-     */
-  }
+        }
+*/
+    }
 }
 </script>
 
