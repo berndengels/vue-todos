@@ -1,9 +1,9 @@
 <template>
-    <div id="app" class="container-fluid">
+    <div id="app" class="container">
         <div id="nav">
             <router-link class="page-item" to="/">Home</router-link>
             <router-link class="page-item" to="/todos">Todos</router-link>
-            <router-link class="page-item" to="/login">Login</router-link>
+            <router-link to="/login">Login</router-link>
         </div>
         <router-view/>
     </div>
