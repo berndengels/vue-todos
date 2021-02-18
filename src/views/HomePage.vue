@@ -1,7 +1,7 @@
 <template>
     <div class="home">
         <img alt="Vue logo" src="../assets/logo.png">
-        <Home msg="Welcome to Our Todo Page"/>
+        <Home msg="Willkommen auf unseren Todos"/>
     </div>
 </template>
 

@@ -1,14 +1,13 @@
 <template>
-  <Todos/>
-
+    <Todos/>
 </template>
 
 <script>
-import Todos from "@/components/Todos";
 
+import Todos from "../components/Todos";
 export default {
-  name: "TodosPage",
-  components: {Todos}
+    name: "TodosPage",
+    components: {Todos}
 }
 </script>
 
