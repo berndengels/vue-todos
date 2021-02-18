@@ -2,7 +2,9 @@
     <div>
         <h3>Todos</h3>
         <AddTodo />
-        <Todo :todos="todos" />
+        <hr/>
+<!--        Binde Todo mit props todos-Datenobjekt und handleRemove-Funktion ein-->
+        <Todo :todos="todos" :handleRemove="remove"/>
     </div>
 </template>
 
@@ -20,7 +22,29 @@ export default {
         return {
             todos: data,
         }
-    }
+    },
+  methods: {
+    remove(todo) {
+      // Durchlaufe mit filter das gesamte array und gib alle items zurück,
+      // die != dem aktuellen item sind (nur in der Seitenansicht, DB bleibt unberührt)
+      // ES6-Syntax
+      this.todos = this.todos.filter(item => item !== todo)
+      // // Klassische Variante
+      // this.todos = this.todos.filter(function(item) {
+      //   if (item !== todo) {
+      //     return item
+      //   }
+      // })
+      },
+    // add(text) {
+    //
+    // },
+    // update(todo) {
+    //
+    // }
+    //
+
+  }
 }
 </script>
 
