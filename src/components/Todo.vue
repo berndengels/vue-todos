@@ -6,7 +6,7 @@
 
 <script>
 export default {
-name: "Todo"
+  name: "Todo"
 }
 </script>
 
