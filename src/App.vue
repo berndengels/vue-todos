@@ -1,36 +1,39 @@
 <template>
-    <div id="app" class="container-fluid">
-        <div id="nav">
-            <router-link class="page-item" to="/">Home</router-link>
-        </div>
-        <router-view/>
+  <div id="app" class="container-fluid">
+    <div id="nav">
+      <router-link class="page-item" to="/">Home</router-link>
+      <router-link class="page-item" to="/todos">Todos</router-link>
+      <router-link class="page-item" to="/login">Login</router-link>
+
     </div>
+    <router-view/>
+  </div>
 </template>
 
 <style>
 #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
 }
 
 #nav {
-    padding: 30px;
+  padding: 30px;
 }
 
 #nav a {
-    font-weight: bold;
-    color: #2c3e50;
+  font-weight: bold;
+  color: #2c3e50;
 }
 
 #nav a.router-link-exact-active {
-    color: #42b983;
+  color: #42b983;
 }
 
 #nav .page-item::after {
-    content: " | ";
-    color: #2c3e50;
+  content: " | ";
+  color: #2c3e50;
 }
 </style>
