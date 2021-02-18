@@ -5,10 +5,11 @@
 <!--        Setze die Checkbox auf den jeweiligen Wert in der done-Spalte-->
         <input type="checkbox" v-model="item.done"/>
 <!--        Setze Klasse .done nur, wenn done=true -->
+<!--        v-model lässt zu, den Wert einer Variablen auszulesen und zu verändern-->
         <input name="todo" :class="{'done': item.done}" v-model="item.text">
 <!--        <button class="btn-sm btn-info d-inline-block ml-2">-->
-<!--          <font-awesome-icon icon="trash-alt"/>-->
-<!--          Delete-->
+<!--          <font-awesome-icon icon="save"/>-->
+<!--          Save-->
 <!--        </button>-->
       </li>
     </ul>
