@@ -2,7 +2,8 @@
     <div>
         <h3>Todos</h3>
         <AddTodo />
-        <Todo :todos="todos" />
+        <hr/>
+        <Todo :todos="todos" :handleRemove="remove"/>
     </div>
 </template>
 
@@ -20,7 +21,23 @@ export default {
         return {
             todos: data,
         }
-    }
+    },
+  methods: {
+      remove(todo) {
+        // @todo axios api request
+        // ES6 Syntax
+        this.todos = this.todos.filter(item => item !== todo)
+      },
+    /*
+      add(text) {
+
+      },
+      update(todo) {
+
+      }
+
+     */
+  }
 }
 </script>
 
