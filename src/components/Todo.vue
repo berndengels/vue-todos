@@ -28,21 +28,17 @@ export default {
 .done {
   text-decoration: line-through;
 }
-
 input[name="todo"] {
   border: none;
   width: 80%;
 }
-
 input[type="checkbox"] {
   margin-right: 5px;
 }
-
 ul {
   width: 80%;
   margin: auto;
 }
-
 li {
   list-style: none;
   text-align: left;

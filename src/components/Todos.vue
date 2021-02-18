@@ -11,7 +11,7 @@
 <script>
 import AddTodo from "./AddTodo";
 import Todo from "./Todo";
-import {data} from "../store/todos";
+import { data } from "../store/todos";
 
 export default {
   name: "Todos",
