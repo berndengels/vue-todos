@@ -1,6 +1,8 @@
 <template>
   <div>
     <h3>Todos</h3>
+    <AddTodo/>
+    <Todo/>
   </div>
 </template>
 
