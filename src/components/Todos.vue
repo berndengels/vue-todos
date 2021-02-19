@@ -1,55 +1,25 @@
 <template>
     <div>
         <h3>Todos</h3>
-        <AddTodo :handleAdd="add"/>
+        <AddTodo/>
         <hr/>
-        <Todo :todos="todos" :handleRemove="remove" />
+        <Todo :todos="todos" />
     </div>
 </template>
 
 <script>
+/* eslint-disable */
 import AddTodo from "./AddTodo";
 import Todo from "./Todo";
-import { data } from "../store/todos";
+import { mapGetters } from "vuex";
 
 export default {
     name: "Todos",
     components: {Todo, AddTodo},
     created() {
+        this.$store.dispatch('todos/all')
     },
-    data() {
-        return {
-            todos: data,
-        }
-    },
-    methods: {
-        remove(todo) {
-            // @todo axios api request
-            // ES6 Syntax
-            this.todos = this.todos.filter(item => item !== todo)
-/*
-// klassische Syntax in JS
-            this.todos = this.todos.filter(function(item) {
-                if(item !== todo) {
-                    return item
-                }
-            })
-*/
-        },
-        add(txt) {
-            var obj = {
-                id: 100,
-                done: 1,
-                text: txt,
-            }
-            this.todos.push(obj)
-        },
-/*
-        update(todo) {
-
-        }
-*/
-    }
+    computed: mapGetters({todos: 'todos/allTodos'}),
 }
 </script>
 

@@ -1,3 +1,4 @@
+/* eslint-disable */
 "use strict";
 import Vue from 'vue';
 import axios from "axios";
@@ -12,6 +13,8 @@ let config = {
 	// timeout: 60 * 1000, // Timeout
 	withCredentials: true, // Check cross-site Access-Control
 };
+
+//console.info(auth);
 
 const _axios = axios.create(config);
 
