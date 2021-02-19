@@ -11,13 +11,18 @@
 <script>
 import AddTodo from "./AddTodo";
 import Todo from "./Todo";
-import { data } from "../store/todos";
+import {data} from "../store/todos";
+import uuid from 'uuid';
+// import axios from "axios";
 
 export default {
   name: "Todos",
   components: {Todo, AddTodo},
-  created() {
-  },
+  // created() {
+  //   axios.get('http://videostore.loc/api/todos')
+  //       .then(res => this.todos = res.data.data)
+  //       .catch(err => console.log(err));
+  // },
   data() {
     return {
       todos: data,
@@ -37,14 +42,19 @@ export default {
       // })
     },
     add(txt) {
-      // Neu angelegtes todo-Objekt analog der todos-Objektstruktur mit neuem text
+      // Neu angelegtes todo-Objekt analog der todos-Objektstruktur mit neuem text (Parameter txt)
       var obj = {
-        id: 100,
+        id: uuid.v4(),
         done: false,
-        text: txt,
+        text: txt
       }
       // Füge todo-Objekt das neu kreierte Objekt mit push hinzu
       this.todos.push(obj)
+      // axios.post('http://videostore.loc/api/todos', obj)
+      //     .then(res => this.todos = [...this.todos, res.data.data])
+      //     .catch(err => console.log(err));
+// Clear text field after submitting
+//       this.text = '';
     },
     // update(todo) {
     //
