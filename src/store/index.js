@@ -1,15 +1,12 @@
-import '@/plugins/axios'
 import Vue from 'vue'
 import Vuex from 'vuex'
+import todos from "./modules/todos"
+import auth from "./modules/auth"
 
 Vue.use(Vuex)
 
-const apiRoute = "/api/todos",
-	axios = Vue.axios;
-
-export default new Vuex.Store({
-	state: {},
-	mutations: {},
-	actions: {},
-	modules: {}
+const store = new Vuex.Store({
+	modules: { todos, auth }
 })
+
+export default store

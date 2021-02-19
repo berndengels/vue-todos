@@ -8,6 +8,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import AddTodo from "./AddTodo";
 import Todo from "./Todo";
 import { data } from "../store/todos";

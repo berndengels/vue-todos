@@ -1,0 +1,18 @@
+/* eslint-disable */
+import '@/plugins/axios'
+import Vue from 'vue'
+import Vuex from 'vuex'
+
+Vue.use(Vuex)
+
+const apiRoute = "/api/todos",
+	axios = Vue.axios;
+
+const todos = new Vuex.Store({
+	state: {},
+	mutations: {},
+	actions: {},
+	modules: {}
+})
+
+export default todos
