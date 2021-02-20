@@ -10,6 +10,6 @@
 <script>
 export default {
     name: "AlertMsg",
-    props: ['errors'],
+    props: ['errors']
 }
 </script>
