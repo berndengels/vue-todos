@@ -3,7 +3,7 @@
         <div id="nav">
             <router-link class="page-item" to="/">Home</router-link>
             <router-link class="page-item" to="/todos">Todos</router-link>
-            <span class="font-weight-bold" v-if="authenticated" @click="logout">Logout ({{ userName }})</span>
+            <a class="link font-weight-bold" v-if="authenticated" @click="logout">Logout ({{ userName }})</a>
             <router-link v-else to="/login">Login</router-link>
         </div>
         <router-view/>
@@ -37,6 +37,7 @@ export default {
 #nav a {
     font-weight: bold;
     color: #2c3e50;
+    cursor: pointer;
 }
 #nav a.router-link-exact-active {
     color: #42b983;
