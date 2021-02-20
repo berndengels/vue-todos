@@ -39,7 +39,9 @@ export default {
     color: #2c3e50;
     cursor: pointer;
 }
-#nav a.router-link-exact-active {
+#nav a:hover,
+#nav a.router-link-exact-active
+{
     color: #42b983;
 }
 #nav .page-item::after {
