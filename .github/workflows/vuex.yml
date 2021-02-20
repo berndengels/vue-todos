@@ -30,7 +30,7 @@ jobs:
                 # build page fpr production server
             -   name: Build page
                 run: npm run build
-                env:
+                # env:
                     # REACT_APP_WEATHER_API_KEY in repositofy -> settings -> secrets
                     # for openWeatherMap ApiKey
                     # REACT_APP_WEATHER_API_KEY: ${{ secrets.REACT_APP_WEATHER_API_KEY }}
