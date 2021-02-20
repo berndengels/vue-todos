@@ -12,7 +12,6 @@
 import AddTodo from "./AddTodo";
 import Todo from "./Todo";
 import { mapGetters } from "vuex";
-//import store from "@/store";
 
 export default {
     name: "Todos",
@@ -25,7 +24,7 @@ export default {
     computed: {
         todos: () => store.getters["todos/allTodos"]
     }
-*/
+ */
 }
 </script>
 
