@@ -2,10 +2,14 @@
     <div>
         <h3>Login</h3>
         <b-form @submit.prevent>
-            Email: <input type="email" required>
-            <br>
-            Passwort: <input type="password" required>
-            <br>
+            <b-form-group>
+                <label>Email</label>
+                <b-input type="email" placeholder="Email" required/>
+            </b-form-group>
+            <b-form-group>
+                <label>Passwort</label>
+                <b-input type="password" placeholder="Passwort" required/>
+            </b-form-group>
             <b-button>Login</b-button>
         </b-form>
     </div>
