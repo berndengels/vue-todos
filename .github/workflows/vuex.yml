@@ -40,7 +40,7 @@ jobs:
                 with:
                     # ACTIONS_DEPLOY_KEY in repositofy -> settings -> secrets
                     deploy_key: ${{ secrets.VUE_DEPLOY_KEY }}
-                    publish_dir: ./build
+                    publish_dir: ./dist
 
             -   name: executing remote ssh commands
                 uses: appleboy/ssh-action@master
