@@ -10,9 +10,9 @@ const apiRoute = "/api/todos",
 
 const auth = new Vuex.Store({
 	state: {},
-	mutations: {},
+	getters: {},
 	actions: {},
-	modules: {}
+	mutations: {},
 })
 
 export  default auth;

@@ -1,7 +1,7 @@
 <template>
     <div>
         <input v-model="text" class="w-50" placeholder="Todo Text" required />
-        <button @click="handleAdd(text)" class="btn-sm btn-info ml-2">
+        <button @click="null" class="btn-sm btn-info ml-2">
             <font-awesome-icon icon="plus-square"/>
             Add
         </button>
@@ -11,7 +11,6 @@
 <script>
 export default {
     name: "AddTodo",
-    props: ['handleAdd'],
     data() {
         return {
             text: null,
