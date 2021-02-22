@@ -12,7 +12,6 @@ let config = {
 	// timeout: 60 * 1000, // Timeout
 	withCredentials: true, // Check cross-site Access-Control
 };
-
 const _axios = axios.create(config);
 
 _axios.interceptors.request.use(

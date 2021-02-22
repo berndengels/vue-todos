@@ -8,9 +8,12 @@
 </template>
 
 <script>
+import "@plugins/axios";
+import  Vue from "vue";
 import AddTodo from "./AddTodo";
 import Todo from "./Todo";
-import { data } from "../store/todos";
+
+const axios = Vue.axios
 
 export default {
     name: "Todos",
@@ -19,10 +22,15 @@ export default {
     },
     data() {
         return {
-            todos: data,
+            todos: null,
         }
     },
     methods: {
+        getTodos() {
+            axios.get()
+                .then(resp => this.todos = resp.data.data)
+                .catch(err => console.error(err));
+        },
         remove(todo) {
             // @todo axios api request
             // ES6 Syntax
