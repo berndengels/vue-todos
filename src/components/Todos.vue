@@ -64,7 +64,15 @@ export default {
                 .catch(err => console.error(err));
         },
         update(todo) {
-            this.todos = this.todos.map(item => (todo === item) ? todo : item)
+            axios.put(apiURL + "/" + todo.id, todo)
+                .then(resp => {
+                  if(resp.data.error) {
+                    alert(resp.data.error.text[0])
+                    return
+                  }
+                  this.todos = this.todos.map(item => (todo === item) ? todo : item)
+                })
+                .catch(err => console.error(err));
         }
     }
 }
