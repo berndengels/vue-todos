@@ -8,13 +8,28 @@ Vue.use(Vuex)
 const apiRoute = "/api/todos",
 	axios = Vue.axios;
 
-const state = {}
+const state = {
+	todos: null,
+}
 
-const getters = {}
+const getters = {
+	allTodos: state => state.todos
+}
 
-const actions = {}
+const actions = {
+	all({commit}) {
+		axios.get(apiRoute)
+			.then(resp => commit('setTodos', resp.data.data))
+			.catch(err => console.error(err))
+	},
+	remove({commit}) {},
+	update({commit}) {},
+	store({commit}) {},
+}
 
-const mutations = {}
+const mutations = {
+	setTodos: (state, todos) => state.todos = todos
+}
 
 export default {
 	namespaced: true,
