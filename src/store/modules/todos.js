@@ -20,7 +20,7 @@ const actions = {
 	all({commit}) {
 		axios.get(apiRoute)
 			.then(resp => commit('setTodos', resp.data.data))
-			.catch(err => console.error(err))
+			.catch(err => console.error(err));
 	},
 	remove({commit}) {},
 	update({commit}) {},
@@ -28,7 +28,7 @@ const actions = {
 }
 
 const mutations = {
-	setTodos: (state, todos) => state.todos = todos
+	setTodos: (state, todos) => state.todos = todos,
 }
 
 export default {
