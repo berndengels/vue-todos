@@ -2,12 +2,21 @@
     <div id="app" class="container">
         <div id="nav">
             <router-link class="page-item" to="/">Home</router-link>
-            <router-link class="page-item" to="/todos">Todos</router-link>
+            <router-link class="page-item" to="/todos">Todos ({{ todos.length }})</router-link>
             <router-link to="/login">Login</router-link>
         </div>
         <router-view/>
     </div>
 </template>
+
+<script>
+import {mapGetters} from "vuex"
+
+export default {
+    name: "App",
+    computed: mapGetters({todos: 'todos/allTodos'})
+}
+</script>
 
 <style>
 #app {
