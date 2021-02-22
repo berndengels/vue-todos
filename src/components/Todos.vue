@@ -9,6 +9,7 @@
 </template>
 
 <script>
+/* eslint-disable*/
 import Vue from "vue";
 // Nutze das Plugin, in dem axios bereits importiert wurde
 import "@/plugins/axios";
