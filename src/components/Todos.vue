@@ -8,17 +8,19 @@
 </template>
 
 <script>
-import "@plugins/axios";
 import  Vue from "vue";
+import "@/plugins/axios";
 import AddTodo from "./AddTodo";
 import Todo from "./Todo";
 
-const axios = Vue.axios
+const axios = Vue.axios,
+    apiURL = "/api/todos";
 
 export default {
     name: "Todos",
     components: {Todo, AddTodo},
     created() {
+        this.getTodos()
     },
     data() {
         return {
@@ -27,14 +29,15 @@ export default {
     },
     methods: {
         getTodos() {
-            axios.get()
+            axios.get(apiURL)
                 .then(resp => this.todos = resp.data.data)
                 .catch(err => console.error(err));
         },
         remove(todo) {
-            // @todo axios api request
             // ES6 Syntax
-            this.todos = this.todos.filter(item => item !== todo)
+            axios.delete(apiURL + "/" + todo.id)
+                .then(() => this.todos = this.todos.filter(item => item !== todo))
+                .catch(err => console.error(err));
 /*
 // klassische Syntax in JS
             this.todos = this.todos.filter(function(item) {
@@ -50,7 +53,7 @@ export default {
                 done: 1,
                 text: txt,
             }
-            this.todos.push(obj)
+            this.todos.unshift(obj)
         },
 /*
         update(todo) {
