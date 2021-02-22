@@ -8,11 +8,11 @@
 </template>
 
 <script>
-import Vue from "vue";
+/* eslint-disable */
+import  Vue from "vue";
 import "@/plugins/axios";
 import AddTodo from "./AddTodo";
 import Todo from "./Todo";
-import { data } from "../store/todos";
 
 const axios = Vue.axios,
     apiURL = "/api/todos";
@@ -21,11 +21,11 @@ export default {
     name: "Todos",
     components: {Todo, AddTodo},
     created() {
-      this.getTodos()
+        this.getTodos()
     },
     data() {
         return {
-            todos: data,
+            todos: null,
         }
     },
     methods: {
@@ -35,7 +35,6 @@ export default {
                 .catch(err => console.error(err));
         },
         remove(todo) {
-            // @todo axios api request
             // ES6 Syntax
             axios.delete(apiURL + "/" + todo.id)
                 .then(() => this.todos = this.todos.filter(item => item !== todo))
@@ -56,17 +55,16 @@ export default {
             }
             axios.post(apiURL, newTodo)
                 .then(resp => {
-                    if(resp.data.error){
-                      alert(resp.data.error.text[0])
-                      return
+                    if(resp.data.error) {
+                        alert(resp.data.error.text[0])
+                        return
                     }
                     this.todos.unshift(resp.data.data)
                 })
                 .catch(err => console.error(err));
         },
-
         update(todo) {
-            this.todos = this.todos.map(item => (todo === item) ? todo : item )
+            this.todos = this.todos.map(item => (todo === item) ? todo : item)
         }
     }
 }
