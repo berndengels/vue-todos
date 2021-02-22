@@ -2,9 +2,9 @@
     <div>
         <ul v-if="todos && todos.length > 0">
             <li v-for="item in todos" :key="item.id">
-                <input @change="null" type="checkbox" v-model="item.done"/>
-                <input @change="null" name="todo" :class="{'done': item.done}" v-model="item.text"/>
-                <b-button @click="null" class="btn-sm btn-danger float-right m-0 py-0 px-1">
+                <input type="checkbox" v-model="item.done"/>
+                <input name="todo" :class="{'done': item.done}" v-model="item.text"/>
+                <b-button class="btn-sm btn-danger float-right m-0 py-0 px-1">
                     <font-awesome-icon icon="trash-alt"/>
                 </b-button>
             </li>
