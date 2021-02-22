@@ -22,13 +22,16 @@ const actions = {
 			.then(resp => commit('setTodos', resp.data.data))
 			.catch(err => console.error(err));
 	},
-	remove({commit}) {},
+	remove({commit}, todo) {
+
+	},
 	update({commit}) {},
 	store({commit}) {},
 }
 
 const mutations = {
 	setTodos: (state, todos) => state.todos = todos,
+	removeTodo: (state, todo) => state.todos = state.todos.filter(item => todo !== item),
 }
 
 export default {
