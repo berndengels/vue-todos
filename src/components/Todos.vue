@@ -9,26 +9,34 @@
 </template>
 
 <script>
+// Nutze das Plugin, in dem axios bereits importiert wurde
+import "@plugins/axios";
+import Vue from "vue";
 import AddTodo from "./AddTodo";
 import Todo from "./Todo";
-import {data} from "../store/todos";
-import uuid from 'uuid';
-// import axios from "axios";
+// import {data} from "../store/todos";
+// import uuid from 'uuid';
+
+const axios = Vue.axios;
 
 export default {
   name: "Todos",
   components: {Todo, AddTodo},
   // created() {
-  //   axios.get('http://videostore.loc/api/todos')
-  //       .then(res => this.todos = res.data.data)
-  //       .catch(err => console.log(err));
+
   // },
   data() {
     return {
-      todos: data,
+      todos: null,
     }
   },
   methods: {
+    getTodos() {
+      axios.get('/api/todos')
+          // axios verpackt Daten in Attribut namens data, im API sind die Daten in einem json-Attribut namens data
+          .then(resp => this.todos = resp.data.data)
+          .catch(err => console.log(err));
+    },
     remove(todo) {
       // Durchlaufe mit filter das gesamte array und gib alle items zurück,
       // die != dem aktuellen item sind (nur in der Seitenansicht, DB bleibt unberührt)
