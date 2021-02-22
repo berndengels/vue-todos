@@ -9,6 +9,7 @@ const apiRoute = "/api/todos",
 	axios = Vue.axios;
 
 const auth = new Vuex.Store({
+	namespaced: true,
 	state: {},
 	getters: {},
 	actions: {},

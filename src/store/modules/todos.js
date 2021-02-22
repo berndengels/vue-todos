@@ -15,14 +15,14 @@ const todos = new Vuex.Store({
 	},
 //	getters: {},
 	actions: {
-		all(commit) {
+		all({commit}) {
 			axios.get(apiRoute)
 				.then(resp => commit('setTodos', resp.data.data))
 				.catch(err => console.error(err));
 		}
 	},
 	mutations: {
-		setTodos: (state,todos) => state.todos = todos,
+		setTodos: (state, todos) => state.todos = todos,
 	},
 })
 

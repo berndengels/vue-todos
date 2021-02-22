@@ -12,14 +12,15 @@
 import AddTodo from "./AddTodo";
 import Todo from "./Todo";
 import store from "../store";
+import { mapGetters, mapActions } from "vuex"
 
 export default {
     name: "Todos",
     components: {Todo, AddTodo},
     created() {
-        //store.dispatch('todos/all')
-        store.dispatch('all')
-    }
+        this.getTodos();
+    },
+    methods: mapActions({getTodos: 'todos/all'})
 }
 </script>
 
