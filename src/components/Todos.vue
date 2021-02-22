@@ -70,8 +70,8 @@ export default {
                         alert(resp.data.error.text[0])
                         return
                     }
-//                    this.todos = this.todos.map(item => (resp.data.data === item) ? resp.data.data : item)
-                    this.todos = this.todos.map(item => (todo === item) ? todo : item)
+                    this.todos = this.todos.map(item => (resp.data.data === item) ? resp.data.data : item)
+//                    this.todos = this.todos.map(item => (todo === item) ? todo : item)
                 })
                 .catch(err => console.error(err));
         }
