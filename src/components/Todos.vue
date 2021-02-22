@@ -3,19 +3,25 @@
         <h3>Todos</h3>
         <AddTodo :handleAdd="add"/>
         <hr/>
-        <Todo :todos="todos" :handleRemove="remove" />
+        <Todo :todos="todos" :handleRemove="remove" :handleUpdate="update" />
     </div>
 </template>
 
 <script>
+import Vue from "vue";
+import "@/plugins/axios";
 import AddTodo from "./AddTodo";
 import Todo from "./Todo";
 import { data } from "../store/todos";
+
+const axios = Vue.axios,
+    apiURL = "/api/todos";
 
 export default {
     name: "Todos",
     components: {Todo, AddTodo},
     created() {
+      this.getTodos()
     },
     data() {
         return {
@@ -23,10 +29,17 @@ export default {
         }
     },
     methods: {
+        getTodos() {
+            axios.get(apiURL)
+                .then(resp => this.todos = resp.data.data)
+                .catch(err => console.error(err));
+        },
         remove(todo) {
             // @todo axios api request
             // ES6 Syntax
-            this.todos = this.todos.filter(item => item !== todo)
+            axios.delete(apiURL + "/" + todo.id)
+                .then(() => this.todos = this.todos.filter(item => item !== todo))
+                .catch(err => console.error(err));
 /*
 // klassische Syntax in JS
             this.todos = this.todos.filter(function(item) {
@@ -37,18 +50,24 @@ export default {
 */
         },
         add(txt) {
-            var obj = {
-                id: 100,
-                done: 1,
+            var newTodo = {
+                done: 0,
                 text: txt,
             }
-            this.todos.push(obj)
+            axios.post(apiURL, newTodo)
+                .then(resp => {
+                    if(resp.data.error){
+                      alert(resp.data.error.text[0])
+                      return
+                    }
+                    this.todos.unshift(resp.data.data)
+                })
+                .catch(err => console.error(err));
         },
-/*
-        update(todo) {
 
+        update(todo) {
+            this.todos = this.todos.map(item => (todo === item) ? todo : item )
         }
-*/
     }
 }
 </script>
