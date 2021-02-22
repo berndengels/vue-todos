@@ -36,20 +36,19 @@ export default {
             })
 */
         },
-
         add(txt) {
             var obj = {
-              id: 100,
-              done: false,
-              text: txt,
+                id: 100,
+                done: 1,
+                text: txt,
             }
             this.todos.push(obj)
         },
 /*
-      update(todo) {
+        update(todo) {
 
-             }
-     */
+        }
+*/
     }
 }
 </script>

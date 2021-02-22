@@ -13,9 +13,9 @@ export default {
     name: "AddTodo",
     props: ['handleAdd'],
     data() {
-      return {
-        text: null,
-      }
+        return {
+            text: null,
+        }
     }
 }
 </script>
