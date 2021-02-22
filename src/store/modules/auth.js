@@ -8,12 +8,18 @@ Vue.use(Vuex)
 const apiRoute = "/api/todos",
 	axios = Vue.axios;
 
-const auth = new Vuex.Store({
-	namespaced: true,
-	state: {},
-	getters: {},
-	actions: {},
-	mutations: {},
-})
+const state = {}
 
-export  default auth;
+const getters = {}
+
+const actions = {}
+
+const mutations = {}
+
+export default {
+	namespaced: true,
+	state,
+	getters,
+	actions,
+	mutations
+}

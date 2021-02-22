@@ -3,7 +3,7 @@
         <h3>Todos</h3>
         <AddTodo/>
         <hr/>
-        <Todo :todos="$store.state.todos"/>
+        <Todo :todos="todos"/>
     </div>
 </template>
 
@@ -11,16 +11,15 @@
 /* eslint-disable */
 import AddTodo from "./AddTodo";
 import Todo from "./Todo";
-import store from "../store";
-import { mapGetters, mapActions } from "vuex"
+import { mapGetters } from "vuex"
 
 export default {
     name: "Todos",
     components: {Todo, AddTodo},
     created() {
-        this.getTodos();
+        this.$store.dispatch('todos/all')
     },
-    methods: mapActions({getTodos: 'todos/all'})
+    methods: mapGetters({todos: 'todos/allTodos'})
 }
 </script>
 
