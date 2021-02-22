@@ -2,7 +2,7 @@
     <div id="app" class="container">
         <div id="nav">
             <router-link class="page-item" to="/">Home</router-link>
-            <router-link class="page-item" to="/todos">Todos</router-link>
+            <router-link class="page-item" to="/todos">Todos ({{ todos.length }})</router-link>
             <a class="link font-weight-bold" v-if="authenticated" @click="logout">Logout ({{ userName }})</a>
             <router-link v-else to="/login">Login</router-link>
         </div>
@@ -18,6 +18,7 @@ export default {
     computed: mapGetters({
         authenticated: 'auth/authenticated',
         userName: 'auth/userName',
+        todos: 'todos/allTodos',
     }),
     methods: mapActions({logout: 'auth/logout'}),
 }
