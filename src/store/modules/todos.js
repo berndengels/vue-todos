@@ -8,6 +8,7 @@ Vue.use(Vuex)
 const apiRoute = "/api/todos",
 	axios = Vue.axios;
 
+// Status der Daten im UI
 const state = {
 	// initialisiere state-Variable todos als Status
 	todos: null,
@@ -25,12 +26,11 @@ const actions = {
 			// commit führt Mutation aus
 			.then(resp => commit('setTodos', resp.data.data))
 			.catch(err => console.error(err));
-
-
-
 	},
-	remove({commit}) {
-
+	remove({commit}, todo) {
+		axios.delete(apiRoute +'/' + todo.id)
+			.then(() => commit('removeTodo', todo))
+			.catch(err => console.error(err));
 	},
 	update({commit}) {
 
@@ -42,7 +42,8 @@ const actions = {
 
 const mutations = {
 	// setze Daten für die todos, state wird automatisch gesetzt
-	setTodos: (state, todos) => state.todos = todos
+	setTodos: (state, todos) => state.todos = todos,
+	removeTodo: (state, todo) => state.todos = state.todos.filter(item => todo !== item),
 }
 
 export default {
