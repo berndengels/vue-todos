@@ -8,6 +8,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import  Vue from "vue";
 import "@/plugins/axios";
 import AddTodo from "./AddTodo";
@@ -48,12 +49,19 @@ export default {
 */
         },
         add(txt) {
-            var obj = {
-                id: 100,
-                done: 1,
+            var newTodo = {
+                done: 0,
                 text: txt,
             }
-            this.todos.unshift(obj)
+            axios.post(apiURL, newTodo)
+                .then(resp => {
+                    if(resp.data.error) {
+                        alert(resp.data.error.text[0])
+                        return
+                    }
+                    this.todos.unshift(resp.data.data)
+                })
+                .catch(err => console.error(err));
         },
 /*
         update(todo) {
