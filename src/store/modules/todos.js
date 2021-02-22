@@ -8,15 +8,15 @@ const apiRoute = "/api/todos",
 	axios = Vue.axios;
 
 const state = {
-	todos: [],
+	todos: null,
 	storeErrors: null,
 	updateErrors: null,
 }
 
 const getters = {
-	allTodos: (state => state.todos ?? null),
-	getStoreErrors: (state => state.storeErrors ?? null),
-	getUpdateErrors: (state => state.updateErrors ?? null),
+	allTodos: state => state.todos,
+	getStoreErrors: state => state.storeErrors,
+	getUpdateErrors: state => state.updateErrors,
 }
 
 const actions = {
@@ -89,7 +89,7 @@ const actions = {
 }
 
 const mutations = {
-	setTodos: (state, todos) => (state.todos = todos),
+	setTodos: (state, todos) => state.todos = todos,
 	addTodo: (state, todo) => (state.todos.unshift(todo)),
 	updateTodo: (state, todo) => (state.todos = state.todos.map(item => (item === todo) ? todo : item )),
 	removeTodo: (state, todo) => (state.todos = state.todos.filter(item => item !== todo)),
