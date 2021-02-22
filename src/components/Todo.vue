@@ -2,8 +2,8 @@
   <div>
     <ul v-if="todos && todos.length > 0">
       <li v-for="item in todos" :key="item.id">
-        <input v-model="item.done" type="checkbox"/>
-        <input v-model="item.text" :class="{'done': item.done}" name="todo"/>
+        <input @change="handleUpdate(item)" v-model="item.done" type="checkbox"/>
+        <input @change="handleUpdate(item)" v-model="item.text" :class="{'done': item.done}" name="todo"/>
 <!--        Button mit click-event: das gerade abgerufene item löschen -->
         <b-button @click="handleRemove(item)" class="btn-sm btn-danger float-right m-0 py-0 px-1">
           <font-awesome-icon icon="trash-alt"/>
@@ -19,7 +19,8 @@ export default {
   name: "Todo",
   props: [
     'todos',
-    'handleRemove'
+    'handleRemove',
+    'handleUpdate'
   ],
 }
 </script>
