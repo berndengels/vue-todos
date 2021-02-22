@@ -3,7 +3,7 @@
         <h3>Todos</h3>
         <AddTodo :handleAdd="add"/>
         <hr/>
-        <Todo :todos="todos" :handleRemove="remove" />
+        <Todo :todos="todos" :handleRemove="remove" :handleUpdate="update" />
     </div>
 </template>
 
@@ -63,11 +63,9 @@ export default {
                 })
                 .catch(err => console.error(err));
         },
-/*
         update(todo) {
-
+            this.todos = this.todos.map(item => (todo === item) ? todo : item)
         }
-*/
     }
 }
 </script>
