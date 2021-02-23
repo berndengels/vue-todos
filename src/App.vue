@@ -3,6 +3,7 @@
         <div id="nav">
             <router-link class="page-item" to="/">Home</router-link>
             <router-link class="page-item" to="/todos">Todos ( {{ todos ? todos.length : 0 }} )</router-link>
+            <a>Logout (Username)</a>
             <router-link to="/login">Login</router-link>
         </div>
         <router-view/>
@@ -38,6 +39,7 @@ export default {
 #nav a {
     font-weight: bold;
     color: #2c3e50;
+    cursor: pointer;
 }
 
 #nav a.router-link-exact-active {
