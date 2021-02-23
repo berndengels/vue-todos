@@ -3,7 +3,8 @@
         <div id="nav">
             <router-link class="page-item" to="/">Home</router-link>
             <router-link class="page-item" to="/todos">Todos ( {{ todos ? todos.length : 0 }} )</router-link>
-            <router-link to="/login">Login</router-link>
+            <a v-if="user" @click="logout">Logout ({{ user.name }})</a>
+            <router-link v-else to="/login">Login</router-link>
         </div>
         <router-view/>
     </div>
@@ -11,15 +12,25 @@
 
 <script>
 /* eslint-disable */
-import { mapGetters } from "vuex"
+import { mapGetters, mapActions } from "vuex"
 
-export default {
+const App = {
     name: "App",
     created() {
         this.$store.dispatch('todos/all')
     },
-    computed: mapGetters({todos: 'todos/allTodos'})
+    methods: {
+        ...mapActions({logout: 'auth/logout'}),
+    },
+    computed: {
+        ...mapGetters({
+           todos: 'todos/allTodos',
+           user: 'auth/user',
+        }),
+    }
 }
+//console.info(App.computed)
+export default App
 </script>
 
 <style>
@@ -38,6 +49,7 @@ export default {
 #nav a {
     font-weight: bold;
     color: #2c3e50;
+    cursor: pointer;
 }
 
 #nav a.router-link-exact-active {

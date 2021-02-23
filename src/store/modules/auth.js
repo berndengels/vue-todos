@@ -30,7 +30,8 @@ const actions = {
 				}
 			});
 	},
-	logout() {
+	logout({commit}) {
+		commit('setLogout')
 	}
 }
 
