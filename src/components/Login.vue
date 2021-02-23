@@ -4,28 +4,32 @@
         <b-form @submit.prevent>
             <b-form-group>
                 <label>Email</label>
-                <b-input type="email" placeholder="Email" required/>
+                <b-input v-model="user.email" type="email" placeholder="Email" required/>
             </b-form-group>
             <b-form-group>
                 <label>Passwort</label>
-                <b-input type="password" placeholder="Passwort" required/>
+                <b-input v-model="user.password" type="password" placeholder="Passwort" required/>
             </b-form-group>
-            <b-button>Login</b-button>
+            <b-button @click="login(user)">Login</b-button>
         </b-form>
     </div>
 </template>
 
 <script>
+/* eslint-disable */
+import { mapActions } from "vuex"
+
 export default {
     name: "Login",
     data() {
         return {
             user: {
-                email: null,
+                email: 'engels@f50.de',
                 password: null,
             }
         }
-    }
+    },
+    methods: mapActions({login: 'auth/login'})
 }
 </script>
 

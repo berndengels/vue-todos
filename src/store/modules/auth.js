@@ -5,16 +5,30 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-const apiRoute = "/api/todos",
+const apiRoute = "/api/login",
 	axios = Vue.axios;
 
-const state = {}
+const state = {
+	user: null
+}
 
-const getters = {}
+const getters = {
+	user: state => state.user,
+}
 
-const actions = {}
+const actions = {
+	login({commit}, user) {
 
-const mutations = {}
+	},
+	logout() {
+
+	}
+}
+
+const mutations = {
+	setLogin: (state, user) => state.user = user,
+	setLogout: (state) => state.user = null,
+}
 
 export default {
 	namespaced: true,
