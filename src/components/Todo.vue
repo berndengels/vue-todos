@@ -21,8 +21,8 @@ export default {
     name: "Todo",
     props: ['todos'],
     methods: mapActions({
-      remove: 'todos/remove',
-      update: 'todos/update',
+        remove: 'todos/remove',
+        update: 'todos/update',
     })
 }
 </script>

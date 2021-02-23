@@ -14,15 +14,15 @@ import { mapActions } from "vuex"
 
 export default {
     name: "AddTodo",
-    methods: mapActions({store: 'todos/store'}),
     data() {
         return {
             todo: {
-              done: 0,
-              text: null,
+                done: 0,
+                text: null,
             },
         }
-    }
+    },
+    methods: mapActions({store: 'todos/store'})
 }
 </script>
 
