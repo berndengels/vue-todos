@@ -36,9 +36,13 @@ const actions = {
 	update({commit}, todo) {
 
 	},
-	store({commit}, todo) {
+	store({commit}, text) {
+		var newTodo = {
+			done: false,
+			text: text
+		}
 		axios.post(apiRoute)
-			.then(() => commit('storeTodo', todo))
+			.then(() => commit('storeTodo', newTodo))
 			.catch(err => console.error(err));
 	}
 }
