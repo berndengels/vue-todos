@@ -2,6 +2,7 @@
 import '@/plugins/axios'
 import Vue from 'vue'
 import Vuex from 'vuex'
+import auth from './auth';
 
 Vue.use(Vuex)
 
@@ -20,6 +21,15 @@ const getters = {
 
 // Für Veränderungen im API/Backend
 const actions = {
+	// Prüfe, ob user eingeloggt ist
+	checkAuth() {
+		if(auth.state.user) {
+			axios.defaults.headers.common['Authorization'] = "Bearer " + auth.state.user.token;
+		} else {
+			alert('Bitte einloggen!')
+			location.href = '/#/login'
+		}
+	},
 	// actions in vues benötigen alle commit-Parameter -> wird automatisch
 	// als Funktionsname mitgeliefert, um sie unten zu benutzen, um die Mutation anzusprechen
 	all({commit}) {
@@ -29,16 +39,19 @@ const actions = {
 			.catch(err => console.error(err));
 	},
 	remove({commit}, todo) {
+		actions.checkAuth()
 		axios.delete(apiRoute +'/' + todo.id)
 			.then(() => commit('removeTodo', todo))
 			.catch(err => console.error(err));
 	},
 	update({commit}, todo) {
+		actions.checkAuth()
 		axios.put(apiRoute +'/' + todo.id, todo)
 			.then(() => commit('updateTodo', todo))
 			.catch(err => console.error(err))
 	},
 	store({commit}, todo) {
+		actions.checkAuth()
 		// Objekt besser direkt in der Komponente erstellen und nur übergeben
 		// const newTodo = {
 		// 	done: false,
