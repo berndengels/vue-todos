@@ -34,15 +34,18 @@ const actions = {
 			.catch(err => console.error(err));
 	},
 	update({commit}, todo) {
-
+		axios.put(apiRoute +'/' + todo.id)
+			.then(() => commit('updateTodo', todo))
+			.catch(err => console.error(err))
 	},
-	store({commit}, text) {
-		var newTodo = {
-			done: false,
-			text: text
-		}
-		axios.post(apiRoute)
-			.then(() => commit('storeTodo', newTodo))
+	store({commit}, todo) {
+		// Objekt besser direkt in der Komponente erstellen und nur übergeben
+		// const newTodo = {
+		// 	done: false,
+		// 	text: text
+		// }
+		axios.post(apiRoute, todo)
+			.then(() => commit('storeTodo', todo))
 			.catch(err => console.error(err));
 	}
 }
@@ -52,7 +55,9 @@ const mutations = {
 	// setze Daten für die todos, state wird automatisch gesetzt
 	setTodos: (state, todos) => state.todos = todos,
 	removeTodo: (state, todo) => state.todos = state.todos.filter(item => todo !== item),
-	storeTodo: (state, todo) => state.todos = state.todos.unshift(todo),
+	// Achtung!! unshift-Methode gibt nichts zurück, also direkt aufrufen!
+	storeTodo: (state, todo) => state.todos.unshift(todo),
+	updateTodo: (state, todo) => state.todos.map(todo)
 }
 
 export default {

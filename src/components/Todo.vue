@@ -2,8 +2,8 @@
     <div>
         <ul v-if="todos && todos.length > 0">
             <li v-for="item in todos" :key="item.id">
-                <input type="checkbox" v-model="item.done"/>
-                <input name="todo" :class="{'done': item.done}" v-model="item.text"/>
+                <input @change="update(item)" type="checkbox" v-model="item.done"/>
+                <input @change="update(item)" name="todo" :class="{'done': item.done}" v-model="item.text"/>
                 <b-button @click="remove(item)" class="btn-sm btn-danger float-right m-0 py-0 px-1">
                     <font-awesome-icon icon="trash-alt"/>
                 </b-button>
@@ -20,7 +20,10 @@ import { mapActions } from "vuex"
 export default {
     name: "Todo",
     props: ['todos'],
-    methods: mapActions({remove: 'todos/remove'})
+    methods: mapActions({
+      remove: 'todos/remove',
+      update: 'todos/update'
+    })
 }
 </script>
 

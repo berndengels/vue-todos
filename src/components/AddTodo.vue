@@ -1,7 +1,7 @@
 <template>
     <div>
-        <input v-model="text" class="w-50" placeholder="Todo Text" required />
-        <button @click="store(text)" class="btn-sm btn-info ml-2">
+        <input v-model="todo.text" class="w-50" placeholder="Todo Text" required />
+        <button @click="store(todo)" class="btn-sm btn-info ml-2">
             <font-awesome-icon icon="plus-square"/>
             Add
         </button>
@@ -15,7 +15,11 @@ export default {
     name: "AddTodo",
     data() {
         return {
-            text: null,
+          todo: {
+            done: 0,
+            text: null
+          }
+
         }
     },
     methods: mapActions({store: 'todos/store'})
