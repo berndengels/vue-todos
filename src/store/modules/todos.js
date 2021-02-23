@@ -30,7 +30,7 @@ const actions = {
 			location.href = "/#/login"
 		}
 	},
-	// actions in vues benötigen alle commit-Parameter -> wird automatisch
+	// actions in vuex benötigen alle commit-Parameter -> wird automatisch
 	// als Funktionsname mitgeliefert, um sie unten zu benutzen, um die Mutation anzusprechen
 	all({commit}) {
 		axios.get(apiRoute)
@@ -57,7 +57,7 @@ const actions = {
 					alert(resp.data.error.text[0])
 					return
 				}
-				commit('addTodo', resp.data.data)
+				commit('storeTodo', resp.data.data)
 			})
 			.catch(err => console.error(err));
 	},
