@@ -18,6 +18,7 @@ const getters = {
 	allTodos: state => state.todos
 }
 
+// Für Veränderungen im API/Backend
 const actions = {
 	// actions in vues benötigen alle commit-Parameter -> wird automatisch
 	// als Funktionsname mitgeliefert, um sie unten zu benutzen, um die Mutation anzusprechen
@@ -32,18 +33,22 @@ const actions = {
 			.then(() => commit('removeTodo', todo))
 			.catch(err => console.error(err));
 	},
-	update({commit}) {
+	update({commit}, todo) {
 
 	},
-	store({commit}) {
-
+	store({commit}, todo) {
+		axios.post(apiRoute)
+			.then(() => commit('storeTodo', todo))
+			.catch(err => console.error(err));
 	}
 }
 
+// Für Veränderungen im UI
 const mutations = {
 	// setze Daten für die todos, state wird automatisch gesetzt
 	setTodos: (state, todos) => state.todos = todos,
 	removeTodo: (state, todo) => state.todos = state.todos.filter(item => todo !== item),
+	storeTodo: (state, todo) => state.todos = state.todos.unshift(todo),
 }
 
 export default {
