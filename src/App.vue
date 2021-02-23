@@ -2,7 +2,7 @@
     <div id="app" class="container">
         <div id="nav">
             <router-link class="page-item" to="/">Home</router-link>
-            <router-link class="page-item" to="/todos">Todos ({{ todos.length }})</router-link>
+            <router-link class="page-item" to="/todos">Todos ({{ todos ? todos.length : 0 }})</router-link>
             <router-link to="/login">Login</router-link>
         </div>
         <router-view/>
@@ -10,10 +10,14 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex"
+/* eslint-disable */
+import { mapGetters } from "vuex"
 
 export default {
     name: "App",
+    created() {
+        this.$store.dispatch('todos/all')
+    },
     computed: mapGetters({todos: 'todos/allTodos'})
 }
 </script>

@@ -16,9 +16,6 @@ import { mapGetters } from "vuex"
 export default {
     name: "Todos",
     components: {Todo, AddTodo},
-    created() {
-        this.$store.dispatch('todos/all')
-    },
     computed: mapGetters({todos: 'todos/allTodos'})
 }
 </script>
