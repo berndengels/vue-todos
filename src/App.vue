@@ -3,7 +3,7 @@
         <div id="nav">
             <router-link class="page-item" to="/">Home</router-link>
             <router-link class="page-item" to="/todos">Todos ( {{ todos ? todos.length : 0 }} )</router-link>
-            <a @click="logout" v-if="user">{{user.name}} Logout</a>
+            <a v-if="user" @click="logout">Logout ({{ user.name }})</a>
             <router-link v-else to="/login">Login</router-link>
         </div>
         <router-view/>
@@ -14,17 +14,23 @@
 /* eslint-disable */
 import { mapGetters, mapActions } from "vuex"
 
-export default {
+const App = {
     name: "App",
     created() {
         this.$store.dispatch('todos/all')
     },
-    methods: mapActions({logout: 'auth/logout'}),
-    computed: mapGetters({
-      todos: 'todos/allTodos',
-      user: 'auth/user',
-    })
+    methods: {
+        ...mapActions({logout: 'auth/logout'}),
+    },
+    computed: {
+        ...mapGetters({
+           todos: 'todos/allTodos',
+           user: 'auth/user',
+        }),
+    }
 }
+//console.info(App.computed)
+export default App
 </script>
 
 <style>
