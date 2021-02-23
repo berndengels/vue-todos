@@ -13,7 +13,17 @@ const state = {
 }
 
 const getters = {
-	user: state => state.user,
+	user: state => {
+		// if there is a token: create user object from localStorage values
+		if(localStorage.getItem('token')) {
+			state.user = {
+				name: localStorage.getItem('name'),
+				email: localStorage.getItem('email'),
+				token: localStorage.getItem('token')
+			}
+		}
+		return state.user
+	},
 }
 
 const actions = {
@@ -21,6 +31,11 @@ const actions = {
 		axios.post(apiRoute, user)
 			.then(resp => {
 				if(resp.data) {
+					// @todo: set localStorage
+					localStorage.setItem("name", resp.data.name)
+					localStorage.setItem("email", resp.data.email)
+					localStorage.setItem("token", resp.data.token)
+
 					commit('setLogin', resp.data)
 				}
 			})
@@ -31,6 +46,8 @@ const actions = {
 			});
 	},
 	logout({commit}) {
+		// clear complete localStorage
+		localStorage.clear();
 		commit('setLogout')
 	}
 }
