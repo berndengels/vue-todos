@@ -34,7 +34,7 @@ const actions = {
 			.catch(err => console.error(err));
 	},
 	update({commit}, todo) {
-		axios.put(apiRoute +'/' + todo.id)
+		axios.put(apiRoute +'/' + todo.id, todo)
 			.then(() => commit('updateTodo', todo))
 			.catch(err => console.error(err))
 	},
@@ -57,7 +57,7 @@ const mutations = {
 	removeTodo: (state, todo) => state.todos = state.todos.filter(item => todo !== item),
 	// Achtung!! unshift-Methode gibt nichts zurück, also direkt aufrufen!
 	storeTodo: (state, todo) => state.todos.unshift(todo),
-	updateTodo: (state, todo) => state.todos.map(todo)
+	updateTodo: (state) => state.todos
 }
 
 export default {
