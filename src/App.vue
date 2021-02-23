@@ -3,8 +3,8 @@
         <div id="nav">
             <router-link class="page-item" to="/">Home</router-link>
             <router-link class="page-item" to="/todos">Todos ( {{ todos ? todos.length : 0 }} )</router-link>
-            <a>Logout (Username)</a>
-            <router-link to="/login">Login</router-link>
+            <a @click="logout" v-if="user">{{user.name}} Logout</a>
+            <router-link v-else to="/login">Login</router-link>
         </div>
         <router-view/>
     </div>
@@ -12,14 +12,18 @@
 
 <script>
 /* eslint-disable */
-import { mapGetters } from "vuex"
+import { mapGetters, mapActions } from "vuex"
 
 export default {
     name: "App",
     created() {
         this.$store.dispatch('todos/all')
     },
-    computed: mapGetters({todos: 'todos/allTodos'})
+    methods: mapActions({logout: 'auth/logout'}),
+    computed: mapGetters({
+      todos: 'todos/allTodos',
+      user: 'auth/user',
+    })
 }
 </script>
 

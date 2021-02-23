@@ -24,7 +24,7 @@ export default {
     data() {
         return {
             user: {
-                email: 'engels@f50.de',
+                email: 'sarah-grich@hotmail.fr',
                 password: null,
             }
         }
