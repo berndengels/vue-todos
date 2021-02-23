@@ -1,7 +1,7 @@
 <template>
     <div>
-        <input v-model="text" class="w-50" placeholder="Todo Text" required />
-        <button @click="add(text)" class="btn-sm btn-info ml-2">
+        <input v-model="newTodo.text" class="w-50" placeholder="Todo Text" required />
+        <button @click="add(newTodo)" class="btn-sm btn-info ml-2">
             <font-awesome-icon icon="plus-square"/>
             Add
         </button>
@@ -19,7 +19,10 @@ export default {
     components: {AlertMsg},
     data() {
         return {
-            text: null,
+            newTodo: {
+                done: 0,
+                text: null,
+            }
         }
     },
     computed: mapGetters({errors: 'todos/getStoreErrors'}),

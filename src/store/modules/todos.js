@@ -20,6 +20,11 @@ const getters = {
 }
 
 const actions = {
+	_checkAuth() {
+		if(auth.state.user) {
+			axios.defaults.headers.common['Authorization'] = "Bearer " + auth.state.user.token;
+		}
+	},
 	all({commit}) {
 		axios.get(apiRoute)
 			.then(resp => {
@@ -29,15 +34,8 @@ const actions = {
 				Validation.handleErrors(err)
 			});
 	},
-	add({commit}, text) {
-		let newTodo = {
-			text: text,
-			done: false,
-		}
-		var token = auth.state.auth ? auth.state.auth.token : null;
-		if(token) {
-			axios.defaults.headers.common['Authorization'] = "Bearer " + token;
-		}
+	add({commit}, newTodo) {
+		actions._checkAuth()
 		axios.post(apiRoute, newTodo)
 			.then(resp => {
 				if(resp.data.error) {
@@ -53,10 +51,7 @@ const actions = {
 			});
 	},
 	update({commit}, todo) {
-		var token = auth.state.auth ? auth.state.auth.token : null;
-		if(token) {
-			axios.defaults.headers.common['Authorization'] = "Bearer " + token;
-		}
+		actions._checkAuth()
 		axios.put(apiRoute + "/" + todo.id, todo)
 			.then(resp => {
 				if(resp.data.error) {
@@ -72,10 +67,7 @@ const actions = {
 			});
 	},
 	remove({commit}, todo) {
-		var token = auth.state.auth ? auth.state.auth.token : null;
-		if(token) {
-			axios.defaults.headers.common['Authorization'] = "Bearer " + token;
-		}
+		actions._checkAuth()
 		axios.delete(apiRoute + "/" + todo.id)
 			.then(resp => {
 				if(resp.data.data) {
