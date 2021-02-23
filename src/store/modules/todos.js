@@ -27,13 +27,24 @@ const actions = {
 			.then(resp => commit('removeTodo', todo))
 			.catch(err => console.error(err));
 	},
+	store({commit}, todo) {
+		axios.post(apiRoute, todo)
+			.then(resp => {
+				if(resp.data.error) {
+					alert(resp.data.error.text[0])
+					return
+				}
+				commit('addTodo', resp.data.data)
+			})
+			.catch(err => console.error(err));
+	},
 	update({commit}, todo) {},
-	store({commit}, todo) {},
 }
 
 const mutations = {
 	setTodos: (state, todos) => state.todos = todos,
 	removeTodo: (state, todo) => state.todos = state.todos.filter(item => todo !== item),
+	addTodo: (state, todo) => state.todos.unshift(todo),
 }
 
 export default {

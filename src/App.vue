@@ -2,7 +2,7 @@
     <div id="app" class="container">
         <div id="nav">
             <router-link class="page-item" to="/">Home</router-link>
-            <router-link class="page-item" to="/todos">Todos ({{ todos ? todos.length : 0 }})</router-link>
+            <router-link class="page-item" to="/todos">Todos ( {{ todos ? todos.length : 0 }} )</router-link>
             <router-link to="/login">Login</router-link>
         </div>
         <router-view/>
