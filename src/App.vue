@@ -15,6 +15,9 @@
 import { mapGetters, mapActions } from "vuex"
 export default {
     name: 'App',
+    created() {
+        this.$store.dispatch('todos/all')
+    },
     computed: mapGetters({
         authenticated: 'auth/authenticated',
         userName: 'auth/userName',
