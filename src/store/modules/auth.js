@@ -18,10 +18,19 @@ const getters = {
 
 const actions = {
 	login({commit}, user) {
-
+		axios.post(apiRoute, user)
+			.then(resp => {
+				if(resp.data) {
+					commit('setLogin', resp.data)
+				}
+			})
+			.catch(err => {
+				if(422 == err.response.status && err.response.data.errors) {
+					alert(err.response.data.message)
+				}
+			});
 	},
 	logout() {
-
 	}
 }
 
