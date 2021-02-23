@@ -13,7 +13,7 @@ const state = {
 }
 
 const getters = {
-	allTodos: state => state.todos
+	allTodos: state => state.todos,
 }
 
 const actions = {
@@ -24,16 +24,16 @@ const actions = {
 	},
 	remove({commit}, todo) {
 		axios.delete(apiRoute + "/" + todo.id)
-			.then(resp => commit('removeTodos', todo))
+			.then(resp => commit('removeTodo', todo))
 			.catch(err => console.error(err));
 	},
-	update({commit}) {},
-	store({commit}) {},
+	update({commit}, todo) {},
+	store({commit}, todo) {},
 }
 
 const mutations = {
 	setTodos: (state, todos) => state.todos = todos,
-	removeTodos: (state, todo) => state.todos = state.todos.filter(item => todo!== item),
+	removeTodo: (state, todo) => state.todos = state.todos.filter(item => todo !== item),
 }
 
 export default {
