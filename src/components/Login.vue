@@ -20,17 +20,16 @@
 import { mapActions } from "vuex"
 
 export default {
-
     name: "Login",
-    methods: mapActions({login: 'auth/login'}),
     data() {
         return {
             user: {
-                email: 'sarah-grich@hotmail.fr',
+                email: 'engels@f50.de',
                 password: null,
             }
         }
-    }
+    },
+    methods: mapActions({login: 'auth/login'})
 }
 </script>
 

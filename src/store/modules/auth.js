@@ -13,17 +13,24 @@ const state = {
 }
 
 const getters = {
-	user:state => state.user,
+	user: state => state.user,
 }
 
 const actions = {
 	login({commit}, user) {
 		axios.post(apiRoute, user)
-			.then(resp => commit('setLogin', resp.data))
-			.catch(err => console.error(err));
+			.then(resp => {
+				if(resp.data) {
+					commit('setLogin', resp.data)
+				}
+			})
+			.catch(err => {
+				if(422 == err.response.status && err.response.data.errors) {
+					alert(err.response.data.message)
+				}
+			});
 	},
 	logout() {
-
 	}
 }
 
