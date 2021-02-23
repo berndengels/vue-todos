@@ -10,13 +10,13 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex';
+import {mapGetters} from "vuex"
+
 export default {
-  name: 'App',
-  methods: mapGetters({todos: 'todos/allTodos'})
+    name: "App",
+    computed: mapGetters({todos: 'todos/allTodos'})
 }
 </script>
-
 
 <style>
 #app {
