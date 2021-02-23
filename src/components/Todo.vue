@@ -4,7 +4,7 @@
             <li v-for="item in todos" :key="item.id">
                 <input type="checkbox" v-model="item.done"/>
                 <input name="todo" :class="{'done': item.done}" v-model="item.text"/>
-                <b-button class="btn-sm btn-danger float-right m-0 py-0 px-1">
+                <b-button class="btn-sm btn-danger float-right m-0 py-0 px-1" @click="remove(item)">
                     <font-awesome-icon icon="trash-alt"/>
                 </b-button>
             </li>
@@ -14,9 +14,11 @@
 </template>
 
 <script>
+import {mapActions} from "vuex"
 export default {
     name: "Todo",
     props: ['todos'],
+    methods: mapActions({remove: 'todos/remove'})
 }
 </script>
 
