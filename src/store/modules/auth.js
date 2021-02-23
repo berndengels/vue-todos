@@ -6,15 +6,23 @@ const apiRoute = "/api/login",
 	axios = Vue.axios;
 
 const state = {
-	auth: null,
+	user: null,
 	errors: null,
 }
 
 const getters = {
-	authenticated: (state => state.auth ? true : false),
-	userName: (state => state.auth ? state.auth.name : null),
-	userToken: (state => state.auth ? state.auth.token : null),
-	getErrors: (state => state.errors),
+	user: state => {
+		// @todo: get localStorage
+		if( localStorage.getItem('token') ) {
+			state.user = {
+				name: localStorage.getItem('name'),
+				email: localStorage.getItem('email'),
+				token: localStorage.getItem('token'),
+			}
+		}
+		return state.user
+	},
+	errors: state => state.errors,
 }
 
 const actions = {
@@ -27,16 +35,14 @@ const actions = {
 					return;
 				}
 				const userName = resp.data.name,
-					userToken = resp.data.token,
-					auth = {
-						name: userName,
-						token: userToken,
-					};
+					userEmail = resp.data.email,
+					userToken = resp.data.token;
 
-				localStorage.setItem('user.name', userName)
-				localStorage.setItem('user.token', userToken)
+				localStorage.setItem('name', userName)
+				localStorage.setItem('email', userEmail)
+				localStorage.setItem('token', userToken)
 				commit('unsetErrors')
-				commit('setAuth', auth)
+				commit('setLogin', user)
 			})
 			.catch(err => {
 				Validation.handleErrors(err)
@@ -44,9 +50,10 @@ const actions = {
 			});
 	},
 	logout({commit}) {
-		localStorage.removeItem('user.name')
-		localStorage.removeItem('user.token')
-		commit('unsetAuth')
+		localStorage.removeItem('name')
+		localStorage.removeItem('email')
+		localStorage.removeItem('token')
+		commit('setLogout')
 		commit('unsetErrors')
 	},
 	test({commit}) {
@@ -55,8 +62,8 @@ const actions = {
 }
 
 const mutations = {
-	setAuth: (state, auth) => (state.auth = auth),
-	unsetAuth: (state) => (state.auth = null),
+	setLogin: (state, auth) => (state.user = auth),
+	setLogout: (state) => (state.user = null),
 	setErrors: (state, errors) => (state.errors = errors),
 	unsetErrors: (state) => (state.errors = null),
 }

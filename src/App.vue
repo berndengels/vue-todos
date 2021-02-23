@@ -3,7 +3,7 @@
         <div id="nav">
             <router-link class="page-item" to="/">Home</router-link>
             <router-link class="page-item" to="/todos">Todos ({{ todos.length }})</router-link>
-            <a class="link font-weight-bold" v-if="authenticated" @click="logout">Logout ({{ userName }})</a>
+            <a class="link font-weight-bold" v-if="user" @click="logout">Logout ({{ user.name }})</a>
             <router-link v-else to="/login">Login</router-link>
         </div>
         <router-view/>
@@ -19,8 +19,7 @@ export default {
         this.$store.dispatch('todos/all')
     },
     computed: mapGetters({
-        authenticated: 'auth/authenticated',
-        userName: 'auth/userName',
+        user: 'auth/user',
         todos: 'todos/allTodos',
     }),
     methods: mapActions({logout: 'auth/logout'}),
