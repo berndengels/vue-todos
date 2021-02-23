@@ -2,7 +2,7 @@
 import '@/plugins/axios'
 import Vue from 'vue'
 import Vuex from 'vuex'
-import auth from './auth';
+import auth from "./auth";
 
 Vue.use(Vuex)
 
@@ -27,7 +27,7 @@ const actions = {
 			axios.defaults.headers.common['Authorization'] = "Bearer " + auth.state.user.token;
 		} else {
 			alert('Bitte einloggen!')
-			location.href = '/#/login'
+			location.href = "/#/login"
 		}
 	},
 	// actions in vues benötigen alle commit-Parameter -> wird automatisch
@@ -40,15 +40,9 @@ const actions = {
 	},
 	remove({commit}, todo) {
 		actions.checkAuth()
-		axios.delete(apiRoute +'/' + todo.id)
-			.then(() => commit('removeTodo', todo))
+		axios.delete(apiRoute + "/" + todo.id)
+			.then(resp => commit('removeTodo', todo))
 			.catch(err => console.error(err));
-	},
-	update({commit}, todo) {
-		actions.checkAuth()
-		axios.put(apiRoute +'/' + todo.id, todo)
-			.then(() => commit('updateTodo', todo))
-			.catch(err => console.error(err))
 	},
 	store({commit}, todo) {
 		actions.checkAuth()
@@ -58,9 +52,27 @@ const actions = {
 		// 	text: text
 		// }
 		axios.post(apiRoute, todo)
-			.then(() => commit('storeTodo', todo))
+			.then(resp => {
+				if(resp.data.error) {
+					alert(resp.data.error.text[0])
+					return
+				}
+				commit('addTodo', resp.data.data)
+			})
 			.catch(err => console.error(err));
-	}
+	},
+	update({commit}, todo) {
+		actions.checkAuth()
+		axios.put(apiRoute + "/" + todo.id, todo)
+			.then(resp => {
+				if(resp.data.error) {
+					alert(resp.data.error.text[0])
+					return
+				}
+				commit('updateTodo', resp.data.data)
+			})
+			.catch(err => console.error(err));
+	},
 }
 
 // Für Veränderungen im UI
@@ -70,7 +82,7 @@ const mutations = {
 	removeTodo: (state, todo) => state.todos = state.todos.filter(item => todo !== item),
 	// Achtung!! unshift-Methode gibt nichts zurück, also direkt aufrufen!
 	storeTodo: (state, todo) => state.todos.unshift(todo),
-	updateTodo: (state) => state.todos
+	updateTodo: (state, todo) => state.todos,
 }
 
 export default {

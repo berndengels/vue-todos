@@ -16,7 +16,8 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+/* eslint-disable */
+import { mapActions } from "vuex"
 
 export default {
     name: "Login",
@@ -29,8 +30,6 @@ export default {
         }
     },
     methods: mapActions({login: 'auth/login'})
-
-
 }
 </script>
 

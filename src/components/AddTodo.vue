@@ -9,17 +9,17 @@
 </template>
 
 <script>
-import {mapActions} from "vuex";
+/* eslint-disable */
+import { mapActions } from "vuex"
 
 export default {
     name: "AddTodo",
     data() {
         return {
-          todo: {
-            done: 0,
-            text: null
-          }
-
+            todo: {
+                done: 0,
+                text: null,
+            },
         }
     },
     methods: mapActions({store: 'todos/store'})
