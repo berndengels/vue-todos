@@ -14,6 +14,7 @@
 /* eslint-disable */
 import { mapGetters, mapActions } from "vuex"
 
+// eigene Konstante App, die dann über export default exportiert wird
 const App = {
     name: "App",
     created() {
@@ -21,6 +22,8 @@ const App = {
         // globale Variable store macht Zugriff auf store-directory möglich
         this.$store.dispatch('todos/all')
     },
+    // ... (spread operator) bewirkt, dass getter-Funktionen hier direkt ausgepackt werden,
+    // als würden sie hier einzeln stehen
     methods: {
         ...mapActions({logout: 'auth/logout'}),
     },
