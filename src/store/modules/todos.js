@@ -2,6 +2,7 @@
 import '@/plugins/axios'
 import Vue from 'vue'
 import Vuex from 'vuex'
+import auth from "./auth"
 
 Vue.use(Vuex)
 
@@ -17,17 +18,27 @@ const getters = {
 }
 
 const actions = {
+	checkAuth() {
+		if(auth.state.user) {
+			axios.defaults.headers.common['Authorization'] = "Bearer " + auth.state.user.token;
+		} else {
+			alert('Bitte einlogen')
+			location.href = "/#/login"
+		}
+	},
 	all({commit}) {
 		axios.get(apiRoute)
 			.then(resp => commit('setTodos', resp.data.data))
 			.catch(err => console.error(err));
 	},
 	remove({commit}, todo) {
+		actions.checkAuth()
 		axios.delete(apiRoute + "/" + todo.id)
 			.then(resp => commit('removeTodo', todo))
 			.catch(err => console.error(err));
 	},
 	store({commit}, todo) {
+		actions.checkAuth()
 		axios.post(apiRoute, todo)
 			.then(resp => {
 				if(resp.data.error) {
@@ -39,6 +50,7 @@ const actions = {
 			.catch(err => console.error(err));
 	},
 	update({commit}, todo) {
+		actions.checkAuth()
 		axios.put(apiRoute + "/" + todo.id, todo)
 			.then(resp => {
 				if(resp.data.error) {

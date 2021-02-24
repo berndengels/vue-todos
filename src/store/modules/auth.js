@@ -13,7 +13,9 @@ const state = {
 }
 
 const getters = {
-	user: state => state.user,
+	user: state => {
+
+	},
 }
 
 const actions = {
@@ -21,6 +23,13 @@ const actions = {
 		axios.post(apiRoute, user)
 			.then(resp => {
 				if(resp.data) {
+					var user = {
+						name: resp.data.name,
+						email: resp.data.email,
+						token: resp.data.token,
+					}
+
+					
 					commit('setLogin', resp.data)
 				}
 			})
