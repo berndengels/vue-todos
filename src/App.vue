@@ -29,7 +29,7 @@ const App = {
         }),
     }
 }
-console.info(App.methods)
+console.info(App.computed)
 export default App
 </script>
 
