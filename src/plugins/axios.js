@@ -14,7 +14,9 @@ let config = {
 	withCredentials: true, // Check cross-site Access-Control
 };
 const _axios = axios.create(config);
-
+if(localStorage.getItem('token')) {
+	_axios.defaults.headers.common.Authorization = "Bearer " + localStorage.getItem('token')
+}
 _axios.interceptors.request.use(
 	function (config) {
 		// Do something before request is sent
